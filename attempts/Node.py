@@ -23,6 +23,8 @@ class Node:
         global current_node_index
         self.node_index = current_node_index
         current_node_index += 1
+        global NODES
+        NODES.append(self)
         
         # init as individual vars
         self.number_of_objects = 0
@@ -79,6 +81,15 @@ class Node:
     def appendChild(self, child_index):
         self.children_indices.append(child_index)        
 
+    def removeChild(self, child_index):
+        del self.children_indices[child_index]
+
+    def getCountMatrix(self):
+        return self.countMatrix
+
+    def setCountMatrix(self, cm):
+        self.countMatrix = cm # looks like ugly hack but isn't!
+
     def report(self):
         print "Node [", self.node_index,"], number_of_objects: ", self.number_of_objects, ". Children indices = ", self.children_indices
 
@@ -90,12 +101,10 @@ O1 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fer
 O2 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 
 N1 = Node()
-NODES.append(N1)
 N1.addObjectsStats(O1)
 N1.addObject(O1)
 
 N2 = Node()
-NODES.append(N2)
 N2.addObjectsStats(O2)
 N2.addObject(O2)
 
@@ -103,6 +112,7 @@ N3 = Node()
 N3.appendChild( N1.node_index )
 N3.appendChild( N2.node_index )
 
+'''
 N1.report()
 N2.report()
 N3.report()
@@ -111,5 +121,16 @@ print ''
 print N1.listAllObjects()
 print ''
 print N3.listAllObjects()
+'''
 
+N4 = Node()
+N4.appendChild( N1.node_index )
+N3.removeChild( N1.node_index )
+N3.appendChild( N4.node_index )
 
+N1.report()
+N2.report()
+N3.report()
+N4.report()
+
+print N3.listAllObjects()
