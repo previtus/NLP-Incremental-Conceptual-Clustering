@@ -23,8 +23,9 @@ attributes['BodyTemp'].append('unregulated')
 attributes['Fertilization'].append('internal')
 attributes['Fertilization'].append('external')
 
-print "ATTRIBUTES: ", attributes.items()
+#print "ATTRIBUTES: ", attributes.items()
 
+'''
 items = []
 items.append(['hair','four','regulated','internal'])
 items.append(['feathers','four','regulated','internal'])
@@ -33,3 +34,4 @@ items.append(['moist-skin','three','unregulated','external'])
 items.append(['scales','two','unregulated','external'])
 
 print "ITEMS: ", items
+'''
