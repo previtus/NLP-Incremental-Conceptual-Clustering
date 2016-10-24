@@ -44,7 +44,7 @@ class Node:
         #print "Counts: ", self.countMatrix.items()
         #print self.countMatrix['BodyCover']['hair']
 
-    def addObject(self, Object):
+    def addObjectsStats(self, Object):
         # updates the number_of_objects and countMatrix, not children
         # because children points to hierarchy of nodes, whereas the counts talk about the objects belonging to the nodes
         self.number_of_objects += 1
@@ -53,6 +53,7 @@ class Node:
             val = Object[attrib]
             self.countMatrix[attrib][val] += 1
 
+    def addObject(self, Object):
         self.objects.append(Object)
 
     def isLeaf(self):
@@ -90,10 +91,12 @@ O2 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 
 
 N1 = Node()
 NODES.append(N1)
+N1.addObjectsStats(O1)
 N1.addObject(O1)
 
 N2 = Node()
 NODES.append(N2)
+N2.addObjectsStats(O2)
 N2.addObject(O2)
 
 N3 = Node()
