@@ -150,20 +150,6 @@ N1 = Node()
 N1.addObjectsStats(O1)
 N1.addObject(O1)
 
-print "N1"
-N1.reportCounts()
-
-N2 = Node()
-N2.appendChild( N1.node_index )
-
-print "N2 before"
-N2.reportCounts()
-N2.updateCountMatrixFromChildren()
-print "N2 after"
-N2.reportCounts()
-
-
-'''
 N2 = Node()
 N2.addObjectsStats(O2)
 N2.addObject(O2)
@@ -182,12 +168,16 @@ N4.setCountMatrix( N1.getCountMatrix() )
 #N4.updateCountMatrixFromChildren()
 
 N3.updateCountMatrixFromChildren()
+print "N1: "
+N1.reportCounts()
+print "N3: "
 N3.reportCounts()
 
+print "\nN1 --- N4: "
 N1.report()
 N2.report()
 N3.report()
 N4.report()
 
+print "\nAll objects: "
 print N3.listAllObjects()
-'''
