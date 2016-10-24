@@ -130,7 +130,16 @@ class Node:
                     val_index += 1
                 attrib_index += 1
 
+    # TODO> Split and Merge
+    def split(self):
+        print "TODO"
+        # return list of children as nodes
 
+    def merge(self, node):
+        print "TODO"
+        # insert all children from 'enemy node' into this one. Update counts.
+
+    # Debug functions
     def report(self):
         print "Node [", self.node_index,"], number_of_objects: ", self.number_of_objects, ". Children indices = ", self.children_indices
 
@@ -138,10 +147,11 @@ class Node:
         print "objects:", self.number_of_objects
         print "counts:", self.countMatrix
 
-
 NODES = []
 current_node_index = 0
 
+# PLAYGROUND:
+'''
 
 O1 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O2 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
@@ -181,3 +191,5 @@ N4.report()
 
 print "\nAll objects: "
 print N3.listAllObjects()
+
+'''
