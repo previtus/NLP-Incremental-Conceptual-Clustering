@@ -12,13 +12,13 @@ attributes['BodyCover'].append('cornified-skin')
 attributes['BodyCover'].append('moist-skin')
 attributes['BodyCover'].append('scales')
 
+attributes['BodyTemp'].append('regulated')
+attributes['BodyTemp'].append('unregulated')
+
 attributes['HeartChamber'].append('four')
 attributes['HeartChamber'].append('imperfect-four')
 attributes['HeartChamber'].append('three')
 attributes['HeartChamber'].append('two')
-
-attributes['BodyTemp'].append('regulated')
-attributes['BodyTemp'].append('unregulated')
 
 attributes['Fertilization'].append('internal')
 attributes['Fertilization'].append('external')
