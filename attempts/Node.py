@@ -6,18 +6,30 @@ class Node:
     '''
     Node in the concept cluster hierarchy
     '''
-    tmp = 0
+    node_index = -1
 
     # Descriptive part - which variables will describe the node
     number_of_objects = 0
     countMatrix = defaultdict(list) # null, needs initialization
-    # adressing: Node.countMatrix[<attrib>][<val>] --> <count>
-    children = []
+    # adressing: self.countMatrix[<attrib>][<val>] --> <count>
+    children_indices = []
+    objects = [] # only LEAF, node with no children has objects
+
 
     # Funcitonal part - nodes functionality
 
     def __init__(self):
         # empty node
+        global current_node_index
+        self.node_index = current_node_index
+        current_node_index += 1
+        
+        # init as individual vars
+        self.number_of_objects = 0
+        countMatrix = defaultdict(list) 
+        self.children_indices = []
+        self.objects = []
+        
         self.initCountMatrix()
 
     def initCountMatrix(self):
@@ -41,13 +53,60 @@ class Node:
             val = Object[attrib]
             self.countMatrix[attrib][val] += 1
 
-    def displayNode(self):
-        print "Node, number_of_objects: ", self.number_of_objects
+        self.objects.append(Object)
 
-N = Node()
+    def isLeaf(self):
+        return (len(self.children_indices) == 0)
 
-O = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
-print O
+    def listAllObjects(self):
 
-N.addObject(O)
+        #print "self report"
+        #self.report()
+        
+        if self.isLeaf():
+            return self.objects
+        else:
+            global NODES
+            
+            objs = []
+            for child_idx in self.children_indices:
+                #print child_idx
+                child = NODES[child_idx]
+                objs = objs + child.listAllObjects()
+            return objs
+
+    def appendChild(self, child_index):
+        self.children_indices.append(child_index)        
+
+    def report(self):
+        print "Node [", self.node_index,"], number_of_objects: ", self.number_of_objects, ". Children indices = ", self.children_indices
+
+NODES = []
+current_node_index = 0
+
+
+O1 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
+O2 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
+
+N1 = Node()
+NODES.append(N1)
+N1.addObject(O1)
+
+N2 = Node()
+NODES.append(N2)
+N2.addObject(O2)
+
+N3 = Node()
+N3.appendChild( N1.node_index )
+N3.appendChild( N2.node_index )
+
+N1.report()
+N2.report()
+N3.report()
+
+print ''
+print N1.listAllObjects()
+print ''
+print N3.listAllObjects()
+
 
