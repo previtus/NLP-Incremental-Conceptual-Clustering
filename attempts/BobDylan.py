@@ -5,7 +5,7 @@ import copy
 
 def BobDylan(N, O):
     # Add Object to the hierarchy represented by Node
-
+    
     if N.isLeaf() and (N.objects == []):
         # first entry just put one child in!
         C = Node()
@@ -15,7 +15,6 @@ def BobDylan(N, O):
         C.addObject(O)
 
         N.addObjectsStats(O)
-        #N.updateCountMatrixFromChildren()
 
     elif N.isLeaf():
         # insert here
@@ -31,22 +30,15 @@ def BobDylan(N, O):
         C2.addObject(O)
 
         N.addObjectsStats(O)
-        #N.updateCountMatrixFromChildren()
-
-        #N.reportTree()
-        #print N.listAllObjects()
-
+        
     else:
         # figure out what to do next
         N.addObjectsStats(O)
 
         AllLists = N.getAllListsFromChildren()
         CU_Child_Pairs = []
-
-        #AllLists = range(1,5)
         #print "ALL-LISTS"
         #DebugClusters(AllLists, 'BodyCover')
-
 
         for i in range(0, len(AllLists)):
             # for node N and its children C1 to Cn
@@ -69,7 +61,6 @@ def BobDylan(N, O):
             selList.remove(O)
 
         CU_Child_Pairs = sorted(CU_Child_Pairs, key=lambda x: (-x[0]))
-        #print CU_Child_Pairs
 
         Cfirst_index = CU_Child_Pairs[0][1]
         Cfirst = N.getChildrenById(Cfirst_index)
@@ -83,8 +74,6 @@ def BobDylan(N, O):
         #print singletonScore
 
         # split score
-
-        #print "split the best?"
         # split the best one into all its children!
         splitScore = 0
         if not Cfirst.isLeaf():
@@ -101,7 +90,6 @@ def BobDylan(N, O):
 
 
         # merge score
-        #print "merge two best?"
         MergeList = copy.copy(AllLists)
         a = Cfirst_index
         b = Csecond_index
@@ -141,28 +129,23 @@ def BobDylan(N, O):
             print "split"
             # TODO
             
-    return ""
 
 
 
 O1 = {'BodyCover': 'scales', 'HeartChamber': 'two', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
 O2 = {'BodyCover': 'moist-skin', 'HeartChamber': 'three', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
-O3 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 
+O3 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O4 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O5 = {'BodyCover': 'cornified-skin', 'HeartChamber': 'imperfect-four', 'BodyTemp': 'unregulated', 'Fertilization': 'internal'}
 #Objects = [O1, O2]
 Objects = [O3, O4, O5]
 
 Root = Node()
-#Root.reportTree()
 
 N1 = Node()
 N1.addObjectsStats(O1)
 N1.addObject(O1)
-
-#N1.addObjectsStats(O4)
-#N1.addObject(O4)
 
 N2 = Node()
 N2.addObjectsStats(O2)
@@ -174,11 +157,6 @@ Root.appendChildObj( N2 )
 Root.updateCountMatrixFromChildren()
 
 for Object in Objects:
-    #print Object
     BobDylan( Root, Object )
 
 Root.reportTree()
-
-
-#print "Final Tree:"
-#Root.reportTree()
