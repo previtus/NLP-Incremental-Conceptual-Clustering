@@ -78,7 +78,8 @@ class Node:
         return (len(self.children_indices) == 0)
 
     def listAllObjects(self):
-
+        # recurrent, digs deep
+        
         #print "self report"
         #self.report()
         
@@ -94,8 +95,18 @@ class Node:
                 objs = objs + child.listAllObjects()
             return objs
 
+    def getAllListsFromChildren(self):
+        AllLists = []
+        for child_idx in self.children_indices:
+            child = NODES[child_idx]
+            AllLists.append( child.listAllObjects() )
+        return AllLists
+
     def appendChild(self, child_index):
         self.children_indices.append(child_index)        
+
+    def appendChildObj(self, child):
+        self.children_indices.append(child.node_index)        
 
     def removeChild(self, child_index):
         del self.children_indices[child_index]
@@ -130,6 +141,9 @@ class Node:
                     val_index += 1
                 attrib_index += 1
 
+    def getChildrenById(self, idx):
+        return NODES[idx]
+
     # TODO> Split and Merge
     def split(self):
         print "TODO"
@@ -141,11 +155,19 @@ class Node:
 
     # Debug functions
     def report(self):
-        print "Node [", self.node_index,"], number_of_objects: ", self.number_of_objects, ". Children indices = ", self.children_indices
+        print "Node [", self.node_index,"], list: ", self.isLeaf(),", number_of_objects: ", self.number_of_objects, ". Children indices = ", self.children_indices
 
     def reportCounts(self):
         print "objects:", self.number_of_objects
         print "counts:", self.countMatrix
+
+    def reportTree(self):
+        self.report()
+
+        global NODES
+        for child_idx in self.children_indices:
+            NODES[child_idx].reportTree()
+
 
 NODES = []
 current_node_index = 0

@@ -101,5 +101,6 @@ def CU(clusters, attrib):
         CU += P_Ck[k] * (sumsumP_Ai_Vij_Ck[k] - sumsumP_Ai_Vij)
     return 1.0/m * (CU)
 
-
+print "IN_clusters_: ", clusters
+print "IN_attrib_: ", attrib
 print CU(clusters, attrib)
