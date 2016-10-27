@@ -53,7 +53,7 @@ def BobDylan(N, O):
 
             clusters = withoutSel
             
-            #DebugClusters(withoutSel, 'BodyCover')
+            DebugClusters(withoutSel, 'BodyCover')
             cu = CU(clusters, attributes)
 
             CU_Child_Pairs.append([cu, i])
@@ -61,6 +61,7 @@ def BobDylan(N, O):
             selList.remove(O)
 
         CU_Child_Pairs = sorted(CU_Child_Pairs, key=lambda x: (-x[0]))
+        print CU_Child_Pairs
 
         Cfirst_index = CU_Child_Pairs[0][1]
         Cfirst = N.getChildrenById(Cfirst_index)
@@ -69,9 +70,9 @@ def BobDylan(N, O):
 
         # singleton score
         SingletonList = AllLists + [[O]]
-        #DebugClusters(SingletonList, 'BodyCover')
+        DebugClusters(SingletonList, 'BodyCover')
         singletonScore = CU(SingletonList, attributes)
-        #print singletonScore
+        print singletonScore
 
         # split score
         # split the best one into all its children!
