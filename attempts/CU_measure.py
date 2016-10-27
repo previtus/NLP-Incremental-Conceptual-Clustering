@@ -1,5 +1,7 @@
 from Attributes import *
 
+NAME_CAT = 'NameDebug'
+
 def DebugClusters(clusters, attrib):
     rep = []
     for a in clusters:
@@ -35,17 +37,18 @@ def CU(clusters, attrib):
     sumsumP_Ai_Vij = 0
     
     for a in attrib:
-        for value in attrib[a]:
-            #print a, value
+        if (a <> NAME_CAT):
+            for value in attrib[a]:
+                #print a, value
 
-            occurances = 0
-            for cluster in clusters:
-                for item in cluster:
-                    #print item
-                    if item[a] == value:
-                        occurances += 1
-            
-            sumsumP_Ai_Vij += pow(float(occurances) / Number_Of_Items, 2)
+                occurances = 0
+                for cluster in clusters:
+                    for item in cluster:
+                        #print item
+                        if item[a] == value:
+                            occurances += 1
+                
+                sumsumP_Ai_Vij += pow(float(occurances) / Number_Of_Items, 2)
 
     if (Verbose):
         print "__sum sum P(Ai=Vij)^2: ", sumsumP_Ai_Vij
@@ -59,17 +62,18 @@ def CU(clusters, attrib):
         sumsumP_Ai_Vij_particular_k = 0
         
         for a in attrib:
-            for value in attrib[a]:
-                #print a, value
+            if (a <> NAME_CAT):
+                for value in attrib[a]:
+                    #print a, value
 
-                occurances = 0
-                for item in cluster:
-                    if item[a] == value:
-                        occurances += 1
+                    occurances = 0
+                    for item in cluster:
+                        if item[a] == value:
+                            occurances += 1
 
-                items_in_cluster = len(cluster)
+                    items_in_cluster = len(cluster)
 
-                sumsumP_Ai_Vij_particular_k += pow(float(occurances) / items_in_cluster, 2)
+                    sumsumP_Ai_Vij_particular_k += pow(float(occurances) / items_in_cluster, 2)
 
         #print sumsumP_Ai_Vij_particular_k
         sumsumP_Ai_Vij_Ck.append(sumsumP_Ai_Vij_particular_k)

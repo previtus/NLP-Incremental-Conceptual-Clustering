@@ -38,7 +38,7 @@ def BobDylan(N, O):
         AllLists = N.getAllListsFromChildren()
         CU_Child_Pairs = []
         #print "ALL-LISTS"
-        #DebugClusters(AllLists, 'BodyCover')
+        #DebugClusters(AllLists, NAME_CAT)
 
         for i in range(0, len(AllLists)):
             # for node N and its children C1 to Cn
@@ -53,7 +53,7 @@ def BobDylan(N, O):
 
             clusters = withoutSel
             
-            DebugClusters(withoutSel, 'BodyCover')
+            DebugClusters(withoutSel, NAME_CAT)
             cu = CU(clusters, attributes)
 
             CU_Child_Pairs.append([cu, i])
@@ -70,7 +70,7 @@ def BobDylan(N, O):
 
         # singleton score
         SingletonList = AllLists + [[O]]
-        DebugClusters(SingletonList, 'BodyCover')
+        DebugClusters(SingletonList, NAME_CAT)
         singletonScore = CU(SingletonList, attributes)
         print singletonScore
 
@@ -85,7 +85,7 @@ def BobDylan(N, O):
                 child = Cfirst.getChildrenById(child_idx)
                 SplitList.append( child.listAllObjects() )
 
-            #DebugClusters(SplitList, 'BodyCover')
+            #DebugClusters(SplitList, NAME_CAT)
             splitScore = CU(SplitList, attributes)
         #print splitScore
 
@@ -102,7 +102,7 @@ def BobDylan(N, O):
 
         MergeList.append( AllLists[a] + AllLists[b] + [O] )
         
-        #DebugClusters(MergeList, 'BodyCover')
+        #DebugClusters(MergeList, NAME_CAT)
         mergeScore = CU(MergeList, attributes)
         #print mergeScore
         
@@ -133,12 +133,12 @@ def BobDylan(N, O):
 
 
 
-O1 = {'BodyCover': 'scales', 'HeartChamber': 'two', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
-O2 = {'BodyCover': 'moist-skin', 'HeartChamber': 'three', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
+O1 = {NAME_CAT: 'fish', 'BodyCover': 'scales', 'HeartChamber': 'two', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
+O2 = {NAME_CAT: 'amphibian', 'BodyCover': 'moist-skin', 'HeartChamber': 'three', 'BodyTemp': 'unregulated', 'Fertilization': 'external'}
 
-O3 = {'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
-O4 = {'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
-O5 = {'BodyCover': 'cornified-skin', 'HeartChamber': 'imperfect-four', 'BodyTemp': 'unregulated', 'Fertilization': 'internal'}
+O3 = {NAME_CAT: 'mammal', 'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
+O4 = {NAME_CAT: 'bird', 'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
+O5 = {NAME_CAT: 'reptile', 'BodyCover': 'cornified-skin', 'HeartChamber': 'imperfect-four', 'BodyTemp': 'unregulated', 'Fertilization': 'internal'}
 #Objects = [O1, O2]
 Objects = [O3, O4, O5]
 
