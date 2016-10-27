@@ -32,3 +32,11 @@ for child_idx in N.children_indices:
 		print item[NAME_CAT]
 
 This will just go from Root to the three children of it and report them if they are leafs. Ofc this will need to dig deeper into the structure (stack of Nodes to visit - first with just Root, then for each processed node all its children will be pushed to it).
+
+ps: the code will output
+fish
+mammal
+reptile
+
+because Root has 3 children and each of them is a leaf - first with one item representing fish, etc.
+(in reality 'fish' is => O1 = {NAME_CAT: 'fish', 'BodyCover': 'scales', 'HeartChamber': 'two', 'BodyTemp': 'unregulated', 'Fertilization': 'external'} )
