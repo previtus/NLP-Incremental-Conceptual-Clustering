@@ -102,6 +102,13 @@ class Node:
             AllLists.append( child.listAllObjects() )
         return AllLists
 
+    def getAllListsFromChildrenWithIdx(self):
+        AllLists = []
+        for child_idx in self.children_indices:
+            child = NODES[child_idx]
+            AllLists.append( [child.listAllObjects(), child_idx] )
+        return AllLists
+
     def appendChild(self, child_index):
         self.children_indices.append(child_index)        
 
@@ -109,7 +116,7 @@ class Node:
         self.children_indices.append(child.node_index)        
 
     def removeChild(self, child_index):
-        del self.children_indices[child_index]
+        self.children_indices.remove(child_index)
 
     def getCountMatrix(self):
         return [self.number_of_objects, self.countMatrix]
