@@ -178,9 +178,22 @@ def BobDylan(N, O):
             
         # is split score is the best?
         else:
-            print "split", Cfirst_index
-            # TODO
+            print "split ", Cfirst_index
+
+            SplitNode = Cfirst
+
+            for idx in SplitNode.children_indices:
+                N.appendChild(idx)
+
+            N.removeChild(Cfirst_index)
             
+            # also new node
+            S = Node()
+            S.addObjectsStats(O)
+            S.addObject(O)
+            N.appendChildObj(S)
+
+            N.updateCountMatrixFromChildren()
 
 
 
@@ -191,7 +204,10 @@ O3 = {NAME_CAT: 'mammal', 'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp
 O4 = {NAME_CAT: 'bird', 'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O5 = {NAME_CAT: 'reptile', 'BodyCover': 'cornified-skin', 'HeartChamber': 'imperfect-four', 'BodyTemp': 'unregulated', 'Fertilization': 'internal'}
 #Objects = [O1, O2]
-Objects = [O3, O4, O5]
+#Objects = [O3, O4, O5]
+
+Objects = [O3, O4, O5, O5, O5]
+
 
 Root = Node()
 
@@ -211,6 +227,7 @@ Root.updateCountMatrixFromChildren()
 for Object in Objects:
     BobDylan( Root, Object )
 
-    # Root.reportTree()
+    #Root.reportTree()
 
+print "\nFinal tree structure:"
 Root.reportTree()
