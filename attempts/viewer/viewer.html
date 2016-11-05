@@ -65,13 +65,11 @@
 
     function theInfoTextConverter(info) {
       var str = "";
-      if (info.title) str += "Title: " + info.title;
+      if (info.title) str += "" + info.title;
       if (info.headOf) str += "\n\nHead of: " + info.headOf;
       if (typeof info.parentNode === "number") {
         var parentNodeinfo = myDiagram.model.findNodeDataForKey(info.parentNode);
-        if (parentNodeinfo !== null) {
-          str += "\n\nReporting to: " + parentNodeinfo.name;
-        }
+
       }
       return str;
     }

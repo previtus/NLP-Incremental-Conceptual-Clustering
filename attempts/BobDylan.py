@@ -7,6 +7,7 @@ def BobDylan(N, O):
     verbose = False
     # Add Object to the hierarchy represented by Node
     
+    print O
     if N.isLeaf() and (N.objects == []):
         # first entry just put one child in!
         C = Node()
@@ -81,8 +82,12 @@ def BobDylan(N, O):
         Cfirst_index = CU_Child_Pairs[0][1]
         Cfirst = N.getChildrenById(Cfirst_index)
         Cfirst_score = CU_Child_Pairs[0][0]
-        Csecond_index = CU_Child_Pairs[1][1]
-        Csecond = N.getChildrenById(Csecond_index)
+
+        C2notLeaf = True
+        if len(N.children_indices) > 1:
+            Csecond_index = CU_Child_Pairs[1][1]
+            Csecond = N.getChildrenById(Csecond_index)
+            C2notLeaf = Csecond.isLeaf()
 
         # singleton score
         SingletonList = AllLists + [[O]]
@@ -114,7 +119,7 @@ def BobDylan(N, O):
 
         # merge score
         mergeScore = 0
-        if (not(Cfirst.isLeaf()) and not(Csecond.isLeaf())):
+        if (not(Cfirst.isLeaf()) and not(C2notLeaf)):
             MergeList = copy.copy(AllLists)
             a = Cfirst_index
             b = Csecond_index
@@ -206,11 +211,12 @@ O5 = {NAME_CAT: 'reptile', 'BodyCover': 'cornified-skin', 'HeartChamber': 'imper
 #Objects = [O1, O2]
 #Objects = [O3, O4, O5]
 
-Objects = [O3, O4, O5, O5, O5]
+Objects = [O1, O2, O3, O4, O5]
 
 
 Root = Node()
 
+'''
 N1 = Node()
 N1.addObjectsStats(O1)
 N1.addObject(O1)
@@ -223,6 +229,7 @@ Root.appendChildObj( N1 )
 Root.appendChildObj( N2 )
 
 Root.updateCountMatrixFromChildren()
+'''
 
 for Object in Objects:
     BobDylan( Root, Object )
