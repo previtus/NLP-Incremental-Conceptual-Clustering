@@ -175,6 +175,23 @@ class Node:
         for child_idx in self.children_indices:
             NODES[child_idx].reportTree()
 
+    def output(self, text_file, parent_id):
+        text_file.write("    { key : "+ str(self.node_index)+", ")
+        text_file.write("parentNode : "+str(parent_id)+", ")
+        if(self.isLeaf()):
+            text_file.write("name: \""+ str(self.objects[0]['NameDebug'])+"\", ")
+        text_file.write("title : \""+ str(self.number_of_objects)+ " objects\"")
+#        text_file.write("Children indices = "+ str(self.children_indices))
+        text_file.write(" },\n")
+
+
+    def outputTree(self, text_file, parent_id):
+        self.output(text_file, parent_id)
+
+        global NODES
+        for child_idx in self.children_indices:
+            NODES[child_idx].outputTree(text_file, self.node_index)
+
 
 NODES = []
 current_node_index = 0

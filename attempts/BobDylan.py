@@ -231,3 +231,10 @@ for Object in Objects:
 
 print "\nFinal tree structure:"
 Root.reportTree()
+fileout = "viewer/data.js"
+text_file = open(fileout, "w")
+text_file = open(fileout, "a")
+text_file.write("var nodeDataArray = [\n")
+Root.outputTree(text_file, -1)
+text_file.write("];")
+text_file.close()
