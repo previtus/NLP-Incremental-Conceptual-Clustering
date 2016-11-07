@@ -6,9 +6,10 @@ import copy
 def BobDylan(N, O):
     verbose = False
     # Add Object to the hierarchy represented by Node
+    print "node", N.node_index, "object", O
     
-    print O
     if N.isLeaf() and (N.objects == []):
+        print "first entry"
         # first entry just put one child in!
         C = Node()
         N.appendChildObj(C)
@@ -19,6 +20,7 @@ def BobDylan(N, O):
         N.addObjectsStats(O)
 
     elif N.isLeaf():
+        print "second entry"
         # insert here
         C1 = Node()
         C2 = Node()
@@ -70,8 +72,8 @@ def BobDylan(N, O):
                 DebugClusters(withoutSel, NAME_CAT)
             cu = CU(clusters, attributes)
 
-            #CU_Child_Pairs.append([cu, AllListsWithIdx[i][1]])
-            CU_Child_Pairs.append([cu, i])
+            CU_Child_Pairs.append([cu, AllListsWithIdx[i][1]])
+            #CU_Child_Pairs.append([cu, i])
 
             selList.remove(O)
 
@@ -137,7 +139,7 @@ def BobDylan(N, O):
             
         # if C1 score is biggest?
         if (Cfirst_score > singletonScore) and (Cfirst_score > mergeScore) and (Cfirst_score > splitScore):
-            print "best ", Cfirst.node_index
+            print "best ", Cfirst.node_index #"( under node ", N.node_index, ")"
             
             BobDylan(Cfirst, O)
 
@@ -208,10 +210,8 @@ O2 = {NAME_CAT: 'amphibian', 'BodyCover': 'moist-skin', 'HeartChamber': 'three',
 O3 = {NAME_CAT: 'mammal', 'BodyCover': 'hair', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O4 = {NAME_CAT: 'bird', 'BodyCover': 'feathers', 'HeartChamber': 'four', 'BodyTemp': 'regulated', 'Fertilization': 'internal'}
 O5 = {NAME_CAT: 'reptile', 'BodyCover': 'cornified-skin', 'HeartChamber': 'imperfect-four', 'BodyTemp': 'unregulated', 'Fertilization': 'internal'}
-#Objects = [O1, O2]
-#Objects = [O3, O4, O5]
 
-Objects = [O1, O2, O3, O4, O5]
+Objects = [O1, O2, O3, O4]
 
 
 Root = Node()

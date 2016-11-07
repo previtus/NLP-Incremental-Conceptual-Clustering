@@ -64,6 +64,7 @@
     }
 
     function theInfoTextConverter(info) {
+	  // Text of node defined here
       var str = "";
       if (info.title) str += "" + info.title;
       if (info.headOf) str += "\n\nHead of: " + info.headOf;
@@ -71,6 +72,8 @@
         var parentNodeinfo = myDiagram.model.findNodeDataForKey(info.parentNode);
 
       }
+	  if (info.key) str += "\nidx: " + info.key;
+
       return str;
     }
 
