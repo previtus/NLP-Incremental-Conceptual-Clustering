@@ -23,15 +23,10 @@ attributes['HeartChamber'].append('two')
 attributes['Fertilization'].append('internal')
 attributes['Fertilization'].append('external')
 
+# plus for our example
+attributes['BodyCover'].append('slimy')
+attributes['HeartChamber'].append('many')
+attributes['Fertilization'].append('parasytic')
+
+
 #print "ATTRIBUTES: ", attributes.items()
-
-'''
-items = []
-items.append(['hair','four','regulated','internal'])
-items.append(['feathers','four','regulated','internal'])
-items.append(['cornified-skin','imperfect-four','unregulated','internal'])
-items.append(['moist-skin','three','unregulated','external'])
-items.append(['scales','two','unregulated','external'])
-
-print "ITEMS: ", items
-'''
